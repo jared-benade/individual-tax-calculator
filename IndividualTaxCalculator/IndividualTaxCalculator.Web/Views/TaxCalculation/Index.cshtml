@@ -1,0 +1,22 @@
+﻿@model TaxCalculationRequestViewModel
+@{
+    ViewData["Title"] = "Calculate Tax";
+}
+
+<div>
+    <h2>Calculate Individual Tax</h2>
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(model => model.PostalCode)
+            @Html.EditorFor(model => model.PostalCode)
+            @Html.ValidationMessageFor(model => model.PostalCode)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.AnnualIncome)
+            @Html.EditorFor(model => model.AnnualIncome)
+            @Html.ValidationMessageFor(model => model.AnnualIncome)
+        </div>
+        <input type="submit" value="Submit"/>
+    }
+</div>
