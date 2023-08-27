@@ -7,4 +7,8 @@
     </PropertyGroup>
 
 
+    <ItemGroup>
+      <ProjectReference Include="..\IndividualTaxCalculator.Integration.Sql\IndividualTaxCalculator.Integration.Sql.csproj" />
+    </ItemGroup>
+
 </Project>

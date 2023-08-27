@@ -1,9 +1,17 @@
+using IndividualTaxCalculator.Infrastructure.Extensions;
+using IndividualTaxCalculator.Integration.Sql.Extensions;
+using IndividualTaxCalculator.Integration.Sql.Migrations.Utils;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddCommonInfrastructure();
+builder.Services.AddSqlDependencies();
 
 var app = builder.Build();
+
+RunMigrations(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -25,3 +33,13 @@ app.MapControllerRoute(
     "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+return;
+
+void RunMigrations(IHost webApplication)
+{
+    using var scope = webApplication.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    var migratorService = services.GetService<IMigrationService>();
+    migratorService!.MigrateUp();
+}
