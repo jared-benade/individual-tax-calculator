@@ -14,7 +14,7 @@ public class TaxCalculationMappingGateway : ITaxCalculationMappingGateway
 
     public TaxCalculationMappingGateway(IApplicationSettings applicationSettings)
     {
-        _applicationSettings = applicationSettings;
+        _applicationSettings = applicationSettings ?? throw new ArgumentNullException(nameof(applicationSettings));
     }
 
     public async Task<Dictionary<PostalCode, TaxCalculationType>> GetTaxCalculationMapping()
