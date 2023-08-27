@@ -1,10 +1,11 @@
-﻿using IndividualTaxCalculator.Domain.Entities;
+﻿using IndividualTaxCalculator.Application.Interfaces;
+using IndividualTaxCalculator.Domain.Entities;
 using IndividualTaxCalculator.Domain.Gateways;
 using IndividualTaxCalculator.Domain.ValueObjects;
 
 namespace IndividualTaxCalculator.Application.TaxCalculators;
 
-public class FlatValueTaxCalculator
+public class FlatValueTaxCalculator : IFlatValueTaxCalculator
 {
     private readonly IFlatValueTaxConfigGateway _flatValueTaxConfigGateway;
 

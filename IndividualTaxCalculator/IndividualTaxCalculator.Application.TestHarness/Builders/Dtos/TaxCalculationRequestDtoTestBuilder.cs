@@ -1,7 +1,7 @@
 ﻿using IndividualTaxCalculator.Application.Dtos;
 using IndividualTaxCalculator.CommonTestHarness;
 
-namespace IndividualTaxCalculator.Application.TestHarness.Dtos;
+namespace IndividualTaxCalculator.Application.TestHarness.Builders.Dtos;
 
 public class TaxCalculationRequestDtoTestBuilder
 {

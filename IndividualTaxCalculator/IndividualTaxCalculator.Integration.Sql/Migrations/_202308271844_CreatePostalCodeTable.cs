@@ -9,7 +9,8 @@ public class _202308271844_CreatePostalCodeTable : Migration
     {
         Create.Table("PostalCode")
             .WithColumn("Id").AsInt32().PrimaryKey().Identity().NotNullable()
-            .WithColumn("Code").AsString(20).NotNullable();
+            .WithColumn("Code").AsString(20).NotNullable()
+            .WithColumn("TaxCalculationTypeId").AsInt32().ForeignKey("TaxCalculationType", "Id");
     }
 
     public override void Down()

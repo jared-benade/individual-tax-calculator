@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using IndividualTaxCalculator.Application.Interfaces;
-using IndividualTaxCalculator.Application.TestHarness.Dtos;
-using IndividualTaxCalculator.Application.TestHarness.TaxCalculators;
+using IndividualTaxCalculator.Application.TestHarness.Builders.Dtos;
+using IndividualTaxCalculator.Application.TestHarness.Builders.TaxCalculators;
 using IndividualTaxCalculator.Domain.Enums;
 using IndividualTaxCalculator.Domain.Gateways;
 using IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;

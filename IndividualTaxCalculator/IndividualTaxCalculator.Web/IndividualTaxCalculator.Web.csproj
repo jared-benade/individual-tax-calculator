@@ -8,6 +8,7 @@
 
 
     <ItemGroup>
+      <ProjectReference Include="..\IndividualTaxCalculator.Application\IndividualTaxCalculator.Application.csproj" />
       <ProjectReference Include="..\IndividualTaxCalculator.Integration.Sql\IndividualTaxCalculator.Integration.Sql.csproj" />
     </ItemGroup>
 

@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Gateways\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\IndividualTaxCalculator.Domain\IndividualTaxCalculator.Domain.csproj" />
       <ProjectReference Include="..\IndividualTaxCalculator.Infrastructure\IndividualTaxCalculator.Infrastructure.csproj" />
     </ItemGroup>

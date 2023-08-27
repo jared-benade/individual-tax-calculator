@@ -1,3 +1,4 @@
+using IndividualTaxCalculator.Application.Extensions;
 using IndividualTaxCalculator.Infrastructure.Extensions;
 using IndividualTaxCalculator.Integration.Sql.Extensions;
 using IndividualTaxCalculator.Integration.Sql.Migrations.Utils;
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddCommonInfrastructure();
+builder.Services.AddApplicationDependencies();
 builder.Services.AddSqlDependencies();
 
 var app = builder.Build();

@@ -1,3 +1,5 @@
+using IndividualTaxCalculator.Application.Interfaces;
+using IndividualTaxCalculator.Application.TestHarness.Builders;
 using IndividualTaxCalculator.Web.Controllers;
 using IndividualTaxCalculator.Web.Models;
 
@@ -13,7 +15,7 @@ public class TaxCalculationControllerTests
         public void ShouldReturnViewWithModel()
         {
             // Arrange
-            var sut = new SutFixtureBuilder().Build();
+            var sut = SutFixtureBuilder.Create().Build();
             // Act
             var result = sut.Index() as ViewResult;
             // Assert
@@ -28,9 +30,21 @@ public class TaxCalculationControllerTests
 
     private class SutFixtureBuilder
     {
+        private ITaxCalculationService _taxCalculationService;
+
+        private SutFixtureBuilder()
+        {
+            _taxCalculationService = TaxCalculationServiceTestBuilder.Create().Build();
+        }
+
+        public static SutFixtureBuilder Create()
+        {
+            return new SutFixtureBuilder();
+        }
+
         public TaxCalculationController Build()
         {
-            return new TaxCalculationController();
+            return new TaxCalculationController(_taxCalculationService);
         }
     }
 }

@@ -2,7 +2,7 @@
 using IndividualTaxCalculator.Domain.ValueObjects;
 using NSubstitute;
 
-namespace IndividualTaxCalculator.Application.TestHarness.TaxCalculators;
+namespace IndividualTaxCalculator.Application.TestHarness.Builders.TaxCalculators;
 
 public class ProgressiveTaxCalculatorTestBuilder
 {
