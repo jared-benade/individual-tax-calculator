@@ -1,7 +1,7 @@
 ﻿using IndividualTaxCalculator.Domain.Gateways;
 using NSubstitute;
 
-namespace IndividualTaxCalculator.Domain.TestHarness;
+namespace IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
 
 public class TaxCalculationMappingGatewayTestBuilder
 {

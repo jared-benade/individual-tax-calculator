@@ -1,5 +1,5 @@
 ﻿using IndividualTaxCalculator.Domain.Gateways;
-using IndividualTaxCalculator.Domain.TestHarness;
+using IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
 
 namespace IndividualTaxCalculator.Application.Tests;
 
@@ -13,11 +13,11 @@ public class TaxCalculationServiceTests
 
     private class SutFixtureBuilder
     {
-        private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway =
-            TaxCalculationMappingGatewayTestBuilder.Create().Build();
+        private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
 
         private SutFixtureBuilder()
         {
+            _taxCalculationMappingGateway = TaxCalculationMappingGatewayTestBuilder.Create().Build();
         }
 
         public static SutFixtureBuilder Create()

@@ -9,13 +9,13 @@ public class PostalCode : ValueObject
         Code = code;
     }
 
+    public string Code { get; }
+
     public static PostalCode Create(string code)
     {
         return new PostalCode(code);
     }
-    
-    public string Code { get; }
-    
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Code;

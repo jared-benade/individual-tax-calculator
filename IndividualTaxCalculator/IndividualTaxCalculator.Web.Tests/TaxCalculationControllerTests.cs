@@ -1,6 +1,5 @@
 using IndividualTaxCalculator.Web.Controllers;
 using IndividualTaxCalculator.Web.Models;
-using Microsoft.Extensions.Logging;
 
 namespace IndividualTaxCalculator.Web.Tests;
 
@@ -19,7 +18,7 @@ public class TaxCalculationControllerTests
             var result = sut.Index() as ViewResult;
             // Assert
             result.Should().NotBeNull();
-            
+
             var viewModel = result!.Model as TaxCalculationRequestViewModel;
             viewModel.Should().NotBeNull();
             viewModel!.PostalCode.Should().BeEmpty();
