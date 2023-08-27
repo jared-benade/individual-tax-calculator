@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-3">Welcome</h1>
-    <h1 class="display-6">Please select an option below</h1>
+    <h1 class="display-6 mb-5">Please select an action below</h1>
 
-    @Html.ActionLink("Calculate Individual Tax", "Index", "TaxCalculation")
+    @Html.ActionLink("Calculate Individual Tax", "Index", "TaxCalculation", null, htmlAttributes: new { @class = "btn btn-primary" })
 </div>

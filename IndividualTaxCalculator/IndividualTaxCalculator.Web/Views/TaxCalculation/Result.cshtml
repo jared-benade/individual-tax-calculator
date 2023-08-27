@@ -6,18 +6,18 @@
 
 <div>
     <h2>@ViewBag.Title</h2>
-    <div>
-        @Html.LabelFor(model => model.AnnualIncome)
-        @Html.TextBoxFor(model => model.AnnualIncome, new { @readonly = "readonly" })
-    </div> 
-    <div>
-        @Html.LabelFor(model => model.PostalCode)
-        @Html.TextBoxFor(model => model.PostalCode, new { @readonly = "readonly" })
+    <div class="mb-2">
+        @Html.LabelFor(model => model.TaxAmount, htmlAttributes: new { @class = "form-label" })
+        @Html.TextBoxFor(model => model.TaxAmount, new { @readonly = "readonly", @class = "form-control" })
     </div>
-    <div>
-        @Html.LabelFor(model => model.TaxAmount)
-        @Html.TextBoxFor(model => model.TaxAmount, new { @readonly = "readonly" })
+    <div class="mb-2">
+        @Html.LabelFor(model => model.AnnualIncome, htmlAttributes: new { @class = "form-label" })
+        @Html.TextBoxFor(model => model.AnnualIncome, new { @readonly = "readonly", @class = "form-control" })
+    </div>
+    <div class="mb-2">
+        @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "form-label" })
+        @Html.TextBoxFor(model => model.PostalCode, new { @readonly = "readonly", @class = "form-control" })
     </div>
 
-    @Html.ActionLink("Calculate Tax Again", "Index", "TaxCalculation")
+    @Html.ActionLink("Calculate Tax Again", "Index", "TaxCalculation", null, htmlAttributes: new { @class = "btn btn-primary" })
 </div>
