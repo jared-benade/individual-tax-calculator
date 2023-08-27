@@ -1,10 +1,10 @@
-﻿using IndividualTaxCalculator.Domain.TestHarness;
+﻿using IndividualTaxCalculator.Domain.TestHarness.Utils;
 using IndividualTaxCalculator.Domain.ValueObjects;
 
 namespace IndividualTaxCalculator.Domain.Tests.ValueObjects;
 
 [TestFixture]
-public class IncomeTests
+public class AnnualIncomeTests
 {
     [TestFixture]
     public class Create
@@ -15,31 +15,31 @@ public class IncomeTests
             // Arrange
             var amount = RandomFinance.NegativeAmount();
             // Act
-            var incomeCreation = () => Income.Create(amount);
+            var annualIncomeCreation = () => AnnualIncome.Create(amount);
             // Assert
-            incomeCreation.Should().Throw<Exception>().WithMessage("Income cannot be less than 0");
+            annualIncomeCreation.Should().Throw<Exception>().WithMessage("Annual income cannot be less than 0");
         }
-        
+
         [Test]
         public void GivenAmountIsZero_ShouldNotThrowException()
         {
             // Arrange
             const decimal amount = 0;
             // Act
-            var incomeCreation = () => Income.Create(amount);
+            var annualIncomeCreation = () => AnnualIncome.Create(amount);
             // Assert
-            incomeCreation.Should().NotThrow();
+            annualIncomeCreation.Should().NotThrow();
         }
-        
+
         [Test]
         public void GivenAmountIsPositive_ShouldNotThrowException()
         {
             // Arrange
             var amount = RandomFinance.PositiveAmount();
             // Act
-            var incomeCreation = () => Income.Create(amount);
+            var annualIncomeCreation = () => AnnualIncome.Create(amount);
             // Assert
-            incomeCreation.Should().NotThrow();
+            annualIncomeCreation.Should().NotThrow();
         }
     }
 }
