@@ -22,7 +22,7 @@ public class FlatRateTaxConfigGatewayTestBuilder
         return _gateway;
     }
 
-    public FlatRateTaxConfigGatewayTestBuilder WithFlatRatePercentage(decimal flatRatePercentage)
+    public FlatRateTaxConfigGatewayTestBuilder WithFlatRatePercentage(double flatRatePercentage)
     {
         _gateway.GetFlatRatePercentage().Returns(flatRatePercentage);
         return this;

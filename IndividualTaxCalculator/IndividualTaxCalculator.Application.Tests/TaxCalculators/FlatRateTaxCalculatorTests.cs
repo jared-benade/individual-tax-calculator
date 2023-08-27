@@ -16,7 +16,7 @@ public class FlatRateTaxCalculatorTests
         public async Task GivenAnnualIncome_ShouldCalculateTax()
         {
             // Arrange
-            const decimal flatRatePercentage = 10;
+            const double flatRatePercentage = 10;
             var flatRateTaxConfigGateway = FlatRateTaxConfigGatewayTestBuilder.Create()
                 .WithFlatRatePercentage(flatRatePercentage)
                 .Build();

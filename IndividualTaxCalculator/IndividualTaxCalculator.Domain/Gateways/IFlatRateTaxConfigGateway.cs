@@ -2,5 +2,5 @@
 
 public interface IFlatRateTaxConfigGateway
 {
-    Task<decimal> GetFlatRatePercentage();
+    Task<double> GetFlatRatePercentage();
 }
