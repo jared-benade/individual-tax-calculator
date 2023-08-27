@@ -42,7 +42,7 @@ public class TaxCalculationService : ITaxCalculationService
         var taxCalculationType = taxCalculationMapping[postalCode];
 
         var taxCalculationResult = await _taxCalculatorStrategies[taxCalculationType].CalculateTax(annualIncome);
-        await _taxCalculationResultGateway.Save(taxCalculationResult);
+        await _taxCalculationResultGateway.Save(taxCalculationResult, postalCode);
 
         return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
     }

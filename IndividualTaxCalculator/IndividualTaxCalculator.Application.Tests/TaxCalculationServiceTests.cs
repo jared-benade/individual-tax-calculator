@@ -129,9 +129,11 @@ public class TaxCalculationServiceTests
                 .Build();
 
             TaxCalculationResult? savedTaxCalculationResult = null;
+            PostalCode? savedPostalCode = null;
             var taxCalculationResultGateway = Substitute.For<ITaxCalculationResultGateway>();
             await taxCalculationResultGateway.Save(
-                Arg.Do<TaxCalculationResult>(arg => savedTaxCalculationResult = arg));
+                Arg.Do<TaxCalculationResult>(arg => savedTaxCalculationResult = arg),
+                Arg.Do<PostalCode>(arg => savedPostalCode = arg));
 
             var sut = SutFixtureBuilder.Create()
                 .WithTaxCalculationMappingGateway(taxCalculationMappingGateway)
@@ -143,6 +145,9 @@ public class TaxCalculationServiceTests
             // Assert
             savedTaxCalculationResult.Should().NotBeNull();
             savedTaxCalculationResult.Should().Be(returnedTaxCalculationResult);
+
+            savedPostalCode.Should().NotBeNull();
+            savedPostalCode.Should().Be(postalCode);
         }
     }
 
