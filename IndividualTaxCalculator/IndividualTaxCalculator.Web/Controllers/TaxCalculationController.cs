@@ -10,4 +10,10 @@ public class TaxCalculationController : Controller
     {
         return View(new TaxCalculationRequestViewModel());
     }
+
+    [HttpPost]
+    public IActionResult Index(TaxCalculationRequestViewModel viewModel)
+    {
+        return Index();
+    }
 }

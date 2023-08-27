@@ -4,6 +4,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Web.Tests", "IndividualTaxCalculator.Web.Tests\IndividualTaxCalculator.Web.Tests.csproj", "{73F39078-ED3C-48F3-A52A-B50D514CD150}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Application", "IndividualTaxCalculator.Application\IndividualTaxCalculator.Application.csproj", "{8704F3B8-4A95-49F2-8281-2651F5FB608D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Application.Tests", "IndividualTaxCalculator.Application.Tests\IndividualTaxCalculator.Application.Tests.csproj", "{32394B2F-A69A-4CE4-8689-A27296F98B56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Domain", "IndividualTaxCalculator.Domain\IndividualTaxCalculator.Domain.csproj", "{655ADBB4-7886-4E18-AA4E-86C2D9AE2FA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Domain.Tests", "IndividualTaxCalculator.Domain.Tests\IndividualTaxCalculator.Domain.Tests.csproj", "{8258C4CE-63D5-4E6F-B1AE-ED88C853CB7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Domain.TestHarness", "IndividualTaxCalculator.Domain.TestHarness\IndividualTaxCalculator.Domain.TestHarness.csproj", "{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +28,25 @@ Global
 		{73F39078-ED3C-48F3-A52A-B50D514CD150}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73F39078-ED3C-48F3-A52A-B50D514CD150}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73F39078-ED3C-48F3-A52A-B50D514CD150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8704F3B8-4A95-49F2-8281-2651F5FB608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8704F3B8-4A95-49F2-8281-2651F5FB608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8704F3B8-4A95-49F2-8281-2651F5FB608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8704F3B8-4A95-49F2-8281-2651F5FB608D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32394B2F-A69A-4CE4-8689-A27296F98B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32394B2F-A69A-4CE4-8689-A27296F98B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32394B2F-A69A-4CE4-8689-A27296F98B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32394B2F-A69A-4CE4-8689-A27296F98B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655ADBB4-7886-4E18-AA4E-86C2D9AE2FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655ADBB4-7886-4E18-AA4E-86C2D9AE2FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655ADBB4-7886-4E18-AA4E-86C2D9AE2FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655ADBB4-7886-4E18-AA4E-86C2D9AE2FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8258C4CE-63D5-4E6F-B1AE-ED88C853CB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8258C4CE-63D5-4E6F-B1AE-ED88C853CB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8258C4CE-63D5-4E6F-B1AE-ED88C853CB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8258C4CE-63D5-4E6F-B1AE-ED88C853CB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
