@@ -1,3 +1,3 @@
 ﻿namespace IndividualTaxCalculator.Application.Dtos;
 
-public record TaxCalculationResultDto();
+public record TaxCalculationResultDto(decimal TaxAmount);

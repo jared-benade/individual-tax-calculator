@@ -4,5 +4,5 @@ namespace IndividualTaxCalculator.Application.Interfaces;
 
 public interface ITaxCalculationService
 {
-    TaxCalculationResultDto CalculateTaxForIndividual(TaxCalculationRequestDto request);
+    Task<TaxCalculationResultDto> CalculateTaxForIndividual(TaxCalculationRequestDto request);
 }

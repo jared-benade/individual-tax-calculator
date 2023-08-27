@@ -1,5 +1,3 @@
-﻿using IndividualTaxCalculator.Domain.ValueObjects;
+﻿namespace IndividualTaxCalculator.Application.Dtos;
 
-namespace IndividualTaxCalculator.Application.Dtos;
-
-public record TaxCalculationRequestDto(PostalCode PostalCode, Income AnnualIncome);
+public record TaxCalculationRequestDto(string PostalCode, decimal AnnualIncome);

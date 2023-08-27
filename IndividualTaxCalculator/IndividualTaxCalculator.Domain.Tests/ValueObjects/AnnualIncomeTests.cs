@@ -1,4 +1,4 @@
-﻿using IndividualTaxCalculator.Domain.TestHarness.Utils;
+﻿using IndividualTaxCalculator.CommonTestHarness;
 using IndividualTaxCalculator.Domain.ValueObjects;
 
 namespace IndividualTaxCalculator.Domain.Tests.ValueObjects;

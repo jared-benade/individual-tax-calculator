@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using IndividualTaxCalculator.Application.Interfaces;
 using IndividualTaxCalculator.Application.TaxCalculators;
 using IndividualTaxCalculator.Domain.Gateways;
 using IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
@@ -14,7 +13,7 @@ public class FlatRateTaxCalculatorTests
     public class CalculateTax
     {
         [Test]
-        public void GivenAnnualIncome_ShouldCalculateTax()
+        public async Task GivenAnnualIncome_ShouldCalculateTax()
         {
             // Arrange
             const decimal flatRatePercentage = 10;
@@ -25,9 +24,9 @@ public class FlatRateTaxCalculatorTests
 
             var sut = SutFixtureBuilder.Create().WithFlatRateTaxConfigGateway(flatRateTaxConfigGateway).Build();
             // Act
-            var result = sut.CalculateTax(annualIncome);
+            var result = await sut.CalculateTax(annualIncome);
             // Assert
-            result.Amount.Should().Be(20.045M);
+            result.TaxAmount.Should().Be(20.045M);
         }
     }
 

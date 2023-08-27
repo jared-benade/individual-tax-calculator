@@ -7,13 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\IndividualTaxCalculator.CommonTestHarness\IndividualTaxCalculator.CommonTestHarness.csproj" />
         <ProjectReference Include="..\IndividualTaxCalculator.Domain\IndividualTaxCalculator.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bogus" Version="34.0.2"/>
         <PackageReference Include="NSubstitute" Version="5.0.0"/>
     </ItemGroup>
+
+
 
 
 </Project>

@@ -5,5 +5,5 @@ namespace IndividualTaxCalculator.Domain.Gateways;
 
 public interface ITaxCalculationMappingGateway
 {
-    Dictionary<PostalCode, TaxCalculationType> GetTaxCalculationMapping();
+    Task<Dictionary<PostalCode, TaxCalculationType>> GetTaxCalculationMapping();
 }

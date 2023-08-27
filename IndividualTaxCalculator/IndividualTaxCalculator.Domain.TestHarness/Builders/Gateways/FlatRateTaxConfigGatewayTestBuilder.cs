@@ -5,10 +5,11 @@ namespace IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
 
 public class FlatRateTaxConfigGatewayTestBuilder
 {
-    private readonly IFlatRateTaxConfigGateway _gateway = Substitute.For<IFlatRateTaxConfigGateway>();
+    private readonly IFlatRateTaxConfigGateway _gateway;
 
     private FlatRateTaxConfigGatewayTestBuilder()
     {
+        _gateway = Substitute.For<IFlatRateTaxConfigGateway>();
     }
 
     public static FlatRateTaxConfigGatewayTestBuilder Create()

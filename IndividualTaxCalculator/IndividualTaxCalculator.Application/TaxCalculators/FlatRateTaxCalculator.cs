@@ -14,9 +14,9 @@ public class FlatRateTaxCalculator : IFlatRateTaxCalculator
                                     throw new ArgumentNullException(nameof(flatRateTaxConfigGateway));
     }
 
-    public TaxCalculationResult CalculateTax(AnnualIncome annualIncome)
+    public async Task<TaxCalculationResult> CalculateTax(AnnualIncome annualIncome)
     {
-        var flatRatePercentage = _flatRateTaxConfigGateway.GetFlatRatePercentage();
+        var flatRatePercentage = await _flatRateTaxConfigGateway.GetFlatRatePercentage();
         var taxAmount = annualIncome.Amount * (flatRatePercentage / 100);
 
         return TaxCalculationResult.Create(taxAmount);

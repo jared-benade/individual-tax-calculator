@@ -4,20 +4,20 @@ namespace IndividualTaxCalculator.Domain.ValueObjects;
 
 public class TaxCalculationResult : ValueObject
 {
-    private TaxCalculationResult(decimal amount)
+    private TaxCalculationResult(decimal taxAmount)
     {
-        Amount = amount;
+        TaxAmount = taxAmount;
     }
 
-    public decimal Amount { get; }
+    public decimal TaxAmount { get; }
 
-    public static TaxCalculationResult Create(decimal amount)
+    public static TaxCalculationResult Create(decimal taxAmount)
     {
-        return new TaxCalculationResult(amount);
+        return new TaxCalculationResult(taxAmount);
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Amount;
+        yield return TaxAmount;
     }
 }

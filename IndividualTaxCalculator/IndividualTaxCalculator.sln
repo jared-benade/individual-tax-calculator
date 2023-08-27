@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Domain.TestHarness", "IndividualTaxCalculator.Domain.TestHarness\IndividualTaxCalculator.Domain.TestHarness.csproj", "{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.Application.TestHarness", "IndividualTaxCalculator.Application.TestHarness\IndividualTaxCalculator.Application.TestHarness.csproj", "{5D4455AC-A1F3-4FD9-A01F-E5699894234A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualTaxCalculator.CommonTestHarness", "IndividualTaxCalculator.CommonTestHarness\IndividualTaxCalculator.CommonTestHarness.csproj", "{DD38CE64-8511-4D6A-BBDF-3287A44B92B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,13 @@ Global
 		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC69EE6D-CF8D-410B-B617-39CF4CCDEF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4455AC-A1F3-4FD9-A01F-E5699894234A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4455AC-A1F3-4FD9-A01F-E5699894234A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4455AC-A1F3-4FD9-A01F-E5699894234A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4455AC-A1F3-4FD9-A01F-E5699894234A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD38CE64-8511-4D6A-BBDF-3287A44B92B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD38CE64-8511-4D6A-BBDF-3287A44B92B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD38CE64-8511-4D6A-BBDF-3287A44B92B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD38CE64-8511-4D6A-BBDF-3287A44B92B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
