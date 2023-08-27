@@ -10,16 +10,21 @@ public class TaxCalculationService : ITaxCalculationService
 {
     private readonly IFlatRateTaxCalculator _flatRateTaxCalculator;
     private readonly IFlatValueTaxCalculator _flatValueTaxCalculator;
+    private readonly IProgressiveTaxCalculator _progressiveTaxCalculator;
     private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
 
     public TaxCalculationService(ITaxCalculationMappingGateway taxCalculationMappingGateway,
-        IFlatRateTaxCalculator flatRateTaxCalculator, IFlatValueTaxCalculator flatValueTaxCalculator)
+        IFlatRateTaxCalculator flatRateTaxCalculator, IFlatValueTaxCalculator flatValueTaxCalculator,
+        IProgressiveTaxCalculator progressiveTaxCalculator)
     {
         _taxCalculationMappingGateway = taxCalculationMappingGateway ??
                                         throw new ArgumentNullException(nameof(taxCalculationMappingGateway));
         _flatRateTaxCalculator =
             flatRateTaxCalculator ?? throw new ArgumentNullException(nameof(flatRateTaxCalculator));
-        _flatValueTaxCalculator = flatValueTaxCalculator ?? throw new ArgumentNullException(nameof(flatValueTaxCalculator));
+        _flatValueTaxCalculator =
+            flatValueTaxCalculator ?? throw new ArgumentNullException(nameof(flatValueTaxCalculator));
+        _progressiveTaxCalculator = progressiveTaxCalculator ??
+                                    throw new ArgumentNullException(nameof(progressiveTaxCalculator));
     }
 
     public async Task<TaxCalculationResultDto> CalculateTaxForIndividual(TaxCalculationRequestDto request)
@@ -34,14 +39,15 @@ public class TaxCalculationService : ITaxCalculationService
         {
             var taxCalculationResult = await _flatRateTaxCalculator.CalculateTax(annualIncome);
             return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
-        } 
-        
+        }
+
         if (taxCalculationType == TaxCalculationType.FlatValue)
         {
             var taxCalculationResult = await _flatValueTaxCalculator.CalculateTax(annualIncome);
             return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
         }
 
-        throw new NotImplementedException();
+        var calculationResult = await _progressiveTaxCalculator.CalculateTax(annualIncome);
+        return new TaxCalculationResultDto(calculationResult.TaxAmount);
     }
 }
