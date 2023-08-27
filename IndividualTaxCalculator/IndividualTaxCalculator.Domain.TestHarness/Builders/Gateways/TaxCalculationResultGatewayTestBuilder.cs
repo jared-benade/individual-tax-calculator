@@ -7,11 +7,11 @@ namespace IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
 
 public class TaxCalculationResultGatewayTestBuilder
 {
-    private readonly ITaxCalculationResultGateway _gateway;
+    private readonly ITaxCalculationGateway _gateway;
 
     private TaxCalculationResultGatewayTestBuilder()
     {
-        _gateway = Substitute.For<ITaxCalculationResultGateway>();
+        _gateway = Substitute.For<ITaxCalculationGateway>();
     }
 
     public static TaxCalculationResultGatewayTestBuilder Create()
@@ -19,7 +19,7 @@ public class TaxCalculationResultGatewayTestBuilder
         return new TaxCalculationResultGatewayTestBuilder();
     }
 
-    public ITaxCalculationResultGateway Build()
+    public ITaxCalculationGateway Build()
     {
         return _gateway;
     }

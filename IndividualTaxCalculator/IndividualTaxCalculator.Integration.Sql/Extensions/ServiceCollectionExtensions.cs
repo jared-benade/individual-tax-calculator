@@ -35,6 +35,6 @@ public static class ServiceCollectionExtensions
             .AddScoped<IFlatRateTaxConfigGateway, FlatRateTaxConfigGateway>()
             .AddScoped<IFlatValueTaxConfigGateway, FlatValueTaxConfigGateway>()
             .AddScoped<IProgressiveTaxGateway, ProgressiveTaxGateway>()
-            .AddScoped<ITaxCalculationResultGateway, TaxCalculationResultGateway>();
+            .AddScoped<ITaxCalculationGateway, TaxCalculationGateway>();
     }
 }
