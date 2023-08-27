@@ -44,7 +44,7 @@ public class TaxCalculationService : ITaxCalculationService
         var taxCalculationResult = await _taxCalculatorStrategies[taxCalculationType].CalculateTax(annualIncome);
         await _taxCalculationGateway.Save(annualIncome, postalCode, taxCalculationResult);
 
-        return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
+        return new TaxCalculationResultDto(annualIncome.Amount, postalCode.Code, taxCalculationResult.TaxAmount);
     }
 
     private Dictionary<TaxCalculationType, ITaxCalculator> GetTaxCalculatorStrategies()

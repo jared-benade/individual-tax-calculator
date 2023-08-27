@@ -1,0 +1,23 @@
+﻿@model TaxCalculationResultViewModel
+
+@{
+    ViewBag.Title = "Tax Calculation Result";
+}
+
+<div>
+    <h2>@ViewBag.Title</h2>
+    <div>
+        @Html.LabelFor(model => model.AnnualIncome)
+        @Html.TextBoxFor(model => model.AnnualIncome, new { @readonly = "readonly" })
+    </div> 
+    <div>
+        @Html.LabelFor(model => model.PostalCode)
+        @Html.TextBoxFor(model => model.PostalCode, new { @readonly = "readonly" })
+    </div>
+    <div>
+        @Html.LabelFor(model => model.TaxAmount)
+        @Html.TextBoxFor(model => model.TaxAmount, new { @readonly = "readonly" })
+    </div>
+
+    @Html.ActionLink("Calculate Tax Again", "Index", "TaxCalculation")
+</div>
