@@ -9,7 +9,7 @@
     {
         <div>
             @Html.LabelFor(model => model.PostalCode)
-            @Html.EditorFor(model => model.PostalCode)
+            @Html.DropDownListFor(model => model.PostalCode, new SelectList(Model.PostalCodes, "Value", "Text"))
             @Html.ValidationMessageFor(model => model.PostalCode)
         </div>
         <div>
