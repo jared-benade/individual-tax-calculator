@@ -7,6 +7,7 @@ using IndividualTaxCalculator.Domain.Gateways;
 using IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
 using IndividualTaxCalculator.Domain.TestHarness.Builders.ValueObjects;
 using IndividualTaxCalculator.Domain.ValueObjects;
+using NSubstitute;
 
 namespace IndividualTaxCalculator.Application.Tests;
 
@@ -75,8 +76,8 @@ public class TaxCalculationServiceTests
             // Assert
             result.TaxAmount.Should().Be(returnedTaxCalculationResult.TaxAmount);
         }
-        
-        
+
+
         [Test]
         public async Task GivenTaxTypeIsProgressive_ShouldCalculateTax()
         {
@@ -106,6 +107,43 @@ public class TaxCalculationServiceTests
             // Assert
             result.TaxAmount.Should().Be(returnedTaxCalculationResult.TaxAmount);
         }
+
+        [Test]
+        public async Task ShouldPersistTaxCalculationResult()
+        {
+            // Arrange
+            var request = TaxCalculationRequestDtoTestBuilder.CreateWithRandomProps().Build();
+            var postalCode = PostalCodeTestBuilder.Create().WithCode(request.PostalCode).Build();
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(request.AnnualIncome).Build();
+
+            var taxCalculationTypesMapping = new Dictionary<PostalCode, TaxCalculationType>
+            {
+                { postalCode, TaxCalculationType.FlatRate }
+            };
+            var taxCalculationMappingGateway = TaxCalculationMappingGatewayTestBuilder.Create()
+                .WithMapping(taxCalculationTypesMapping)
+                .Build();
+            var returnedTaxCalculationResult = TaxCalculationResultTestBuilder.CreateWithRandomProps().Build();
+            var flatRateTaxCalculator = FlatRateTaxCalculatorTestBuilder.Create()
+                .WithCalculatedTax(annualIncome, returnedTaxCalculationResult)
+                .Build();
+
+            TaxCalculationResult? savedTaxCalculationResult = null;
+            var taxCalculationResultGateway = Substitute.For<ITaxCalculationResultGateway>();
+            await taxCalculationResultGateway.Save(
+                Arg.Do<TaxCalculationResult>(arg => savedTaxCalculationResult = arg));
+
+            var sut = SutFixtureBuilder.Create()
+                .WithTaxCalculationMappingGateway(taxCalculationMappingGateway)
+                .WithFlatRateTaxCalculator(flatRateTaxCalculator)
+                .WithTaxCalculationResultGateway(taxCalculationResultGateway)
+                .Build();
+            // Act
+            await sut.CalculateTaxForIndividual(request);
+            // Assert
+            savedTaxCalculationResult.Should().NotBeNull();
+            savedTaxCalculationResult.Should().Be(returnedTaxCalculationResult);
+        }
     }
 
     private class SutFixtureBuilder
@@ -114,6 +152,7 @@ public class TaxCalculationServiceTests
         private ITaxCalculationMappingGateway _taxCalculationMappingGateway;
         private IFlatValueTaxCalculator _flatValueTaxCalculator;
         private IProgressiveTaxCalculator _progressiveTaxCalculator;
+        private ITaxCalculationResultGateway _taxCalculationResultGateway;
 
         private SutFixtureBuilder()
         {
@@ -121,6 +160,7 @@ public class TaxCalculationServiceTests
             _flatRateTaxCalculator = FlatRateTaxCalculatorTestBuilder.Create().Build();
             _flatValueTaxCalculator = FlatValueTaxCalculatorTestBuilder.Create().Build();
             _progressiveTaxCalculator = ProgressiveTaxCalculatorTestBuilder.Create().Build();
+            _taxCalculationResultGateway = TaxCalculationResultGatewayTestBuilder.Create().Build();
         }
 
         public static SutFixtureBuilder Create()
@@ -131,7 +171,7 @@ public class TaxCalculationServiceTests
         public TaxCalculationService Build()
         {
             return new TaxCalculationService(_taxCalculationMappingGateway, _flatRateTaxCalculator,
-                _flatValueTaxCalculator, _progressiveTaxCalculator);
+                _flatValueTaxCalculator, _progressiveTaxCalculator, _taxCalculationResultGateway);
         }
 
         public SutFixtureBuilder WithTaxCalculationMappingGateway(
@@ -152,10 +192,17 @@ public class TaxCalculationServiceTests
             _flatValueTaxCalculator = flatValueTaxCalculator;
             return this;
         }
-        
+
         public SutFixtureBuilder WithProgressiveTaxCalculator(IProgressiveTaxCalculator progressiveTaxCalculator)
         {
             _progressiveTaxCalculator = progressiveTaxCalculator;
+            return this;
+        }
+
+        public SutFixtureBuilder WithTaxCalculationResultGateway(
+            ITaxCalculationResultGateway taxCalculationResultGateway)
+        {
+            _taxCalculationResultGateway = taxCalculationResultGateway;
             return this;
         }
     }

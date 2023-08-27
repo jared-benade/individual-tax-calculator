@@ -11,12 +11,13 @@ public class TaxCalculationService : ITaxCalculationService
     private readonly IFlatRateTaxCalculator _flatRateTaxCalculator;
     private readonly IFlatValueTaxCalculator _flatValueTaxCalculator;
     private readonly IProgressiveTaxCalculator _progressiveTaxCalculator;
+    private readonly ITaxCalculationResultGateway _taxCalculationResultGateway;
     private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
     private readonly Dictionary<TaxCalculationType, ITaxCalculator> _taxCalculatorStrategies;
 
     public TaxCalculationService(ITaxCalculationMappingGateway taxCalculationMappingGateway,
         IFlatRateTaxCalculator flatRateTaxCalculator, IFlatValueTaxCalculator flatValueTaxCalculator,
-        IProgressiveTaxCalculator progressiveTaxCalculator)
+        IProgressiveTaxCalculator progressiveTaxCalculator, ITaxCalculationResultGateway taxCalculationResultGateway)
     {
         _taxCalculationMappingGateway = taxCalculationMappingGateway ??
                                         throw new ArgumentNullException(nameof(taxCalculationMappingGateway));
@@ -26,6 +27,8 @@ public class TaxCalculationService : ITaxCalculationService
             flatValueTaxCalculator ?? throw new ArgumentNullException(nameof(flatValueTaxCalculator));
         _progressiveTaxCalculator = progressiveTaxCalculator ??
                                     throw new ArgumentNullException(nameof(progressiveTaxCalculator));
+        _taxCalculationResultGateway = taxCalculationResultGateway ??
+                                       throw new ArgumentNullException(nameof(taxCalculationResultGateway));
 
         _taxCalculatorStrategies = GetTaxCalculatorStrategies();
     }
@@ -39,6 +42,8 @@ public class TaxCalculationService : ITaxCalculationService
         var taxCalculationType = taxCalculationMapping[postalCode];
 
         var taxCalculationResult = await _taxCalculatorStrategies[taxCalculationType].CalculateTax(annualIncome);
+        await _taxCalculationResultGateway.Save(taxCalculationResult);
+
         return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
     }
 
