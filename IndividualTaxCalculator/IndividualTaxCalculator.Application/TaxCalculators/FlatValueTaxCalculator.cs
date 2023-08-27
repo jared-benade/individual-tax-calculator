@@ -14,18 +14,18 @@ public class FlatValueTaxCalculator
                                      throw new ArgumentNullException(nameof(flatValueTaxConfigGateway));
     }
 
-    public async Task<TaxCalculationResult> CalculateTax(AnnualIncome annualIncome)
+    public async Task<TaxCalculationResult> CalculateTax(TaxableAmount annualIncome)
     {
         var taxConfig = await _flatValueTaxConfigGateway.GetConfig();
         var taxAmount = CalculateTaxAmount(annualIncome, taxConfig);
         return TaxCalculationResult.Create(taxAmount);
     }
 
-    private static decimal CalculateTaxAmount(AnnualIncome annualIncome, FlatValueTaxConfig taxConfig)
+    private static decimal CalculateTaxAmount(TaxableAmount annualIncome, FlatValueTaxConfig taxConfig)
     {
         var annualIncomeAmount = annualIncome.Amount;
         return annualIncomeAmount >= taxConfig.AnnualThresholdAmount
             ? taxConfig.FlatValueAmount
-            : annualIncomeAmount * (decimal)(taxConfig.TaxPercentage / 100);
+            : annualIncome.CalculateTax(taxConfig.TaxPercentage);
     }
 }

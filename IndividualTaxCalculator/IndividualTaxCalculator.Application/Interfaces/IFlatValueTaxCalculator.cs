@@ -4,5 +4,5 @@ namespace IndividualTaxCalculator.Application.Interfaces;
 
 public interface IFlatValueTaxCalculator
 {
-    Task<TaxCalculationResult> CalculateTax(AnnualIncome annualIncome);
+    Task<TaxCalculationResult> CalculateTax(TaxableAmount annualIncome);
 }

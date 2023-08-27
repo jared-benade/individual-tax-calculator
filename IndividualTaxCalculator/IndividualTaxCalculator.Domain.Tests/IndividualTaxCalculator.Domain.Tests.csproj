@@ -25,4 +25,6 @@
         <ProjectReference Include="..\IndividualTaxCalculator.Domain\IndividualTaxCalculator.Domain.csproj"/>
     </ItemGroup>
 
+
+
 </Project>

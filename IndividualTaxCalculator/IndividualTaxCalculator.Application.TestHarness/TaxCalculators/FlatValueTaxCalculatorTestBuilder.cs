@@ -23,7 +23,7 @@ public class FlatValueTaxCalculatorTestBuilder
         return _calculator;
     }
 
-    public FlatValueTaxCalculatorTestBuilder WithCalculatedTax(AnnualIncome annualIncome,
+    public FlatValueTaxCalculatorTestBuilder WithCalculatedTax(TaxableAmount annualIncome,
         TaxCalculationResult returnedResult)
     {
         _calculator.CalculateTax(annualIncome).Returns(returnedResult);

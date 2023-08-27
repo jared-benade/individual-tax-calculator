@@ -25,7 +25,7 @@ public class TaxCalculationService : ITaxCalculationService
     public async Task<TaxCalculationResultDto> CalculateTaxForIndividual(TaxCalculationRequestDto request)
     {
         var postalCode = PostalCode.Create(request.PostalCode);
-        var annualIncome = AnnualIncome.Create(request.AnnualIncome);
+        var annualIncome = TaxableAmount.Create(request.AnnualIncome);
 
         var taxCalculationMapping = await _taxCalculationMappingGateway.GetTaxCalculationMapping();
         var taxCalculationType = taxCalculationMapping[postalCode];

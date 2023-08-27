@@ -2,7 +2,7 @@
 
 namespace IndividualTaxCalculator.Application.Interfaces;
 
-public interface IFlatRateTaxCalculator
+public interface IProgressiveTaxCalculator
 {
     Task<TaxCalculationResult> CalculateTax(TaxableAmount annualIncome);
 }

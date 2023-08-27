@@ -16,9 +16,9 @@ public class AnnualIncomeTestBuilder
         return new AnnualIncomeTestBuilder();
     }
 
-    public AnnualIncome Build()
+    public TaxableAmount Build()
     {
-        return AnnualIncome.Create(_amount);
+        return TaxableAmount.Create(_amount);
     }
 
     public AnnualIncomeTestBuilder WithAmount(decimal amount)
