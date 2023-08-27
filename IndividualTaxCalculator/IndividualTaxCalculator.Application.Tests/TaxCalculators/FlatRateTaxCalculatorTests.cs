@@ -2,7 +2,7 @@
 using IndividualTaxCalculator.Application.TaxCalculators;
 using IndividualTaxCalculator.Domain.Gateways;
 using IndividualTaxCalculator.Domain.TestHarness.Builders.Gateways;
-using IndividualTaxCalculator.Domain.ValueObjects;
+using IndividualTaxCalculator.Domain.TestHarness.Builders.ValueObjects;
 
 namespace IndividualTaxCalculator.Application.Tests.TaxCalculators;
 
@@ -20,7 +20,7 @@ public class FlatRateTaxCalculatorTests
             var flatRateTaxConfigGateway = FlatRateTaxConfigGatewayTestBuilder.Create()
                 .WithFlatRatePercentage(flatRatePercentage)
                 .Build();
-            var annualIncome = AnnualIncome.Create(200.45M);
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(200.45M).Build();
 
             var sut = SutFixtureBuilder.Create().WithFlatRateTaxConfigGateway(flatRateTaxConfigGateway).Build();
             // Act
