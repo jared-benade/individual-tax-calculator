@@ -115,8 +115,7 @@ public class ProgressiveTaxCalculatorTests
         [TestFixture]
         public class AcceptanceTests
         {
-            private readonly ProgressiveTaxBracket[] _progressiveTaxBrackets = new []
-            {
+            private readonly ProgressiveTaxBracket[] _progressiveTaxBrackets = {
                 ProgressiveTaxBracket.Create(1, 10, 0, 8350),
                 ProgressiveTaxBracket.Create(2, 15, 8351, 33950),
                 ProgressiveTaxBracket.Create(3, 25, 33951, 82250),
