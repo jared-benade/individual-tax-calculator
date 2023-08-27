@@ -110,6 +110,105 @@ public class ProgressiveTaxCalculatorTests
             // Assert
             result.TaxAmount.Should().Be(expectedTaxAmount);
         }
+        
+        // Add poor man's acceptance testing until E2E tests can be added
+        [TestFixture]
+        public class AcceptanceTests
+        {
+            private readonly ProgressiveTaxBracket[] _progressiveTaxBrackets = new []
+            {
+                ProgressiveTaxBracket.Create(1, 10, 0, 8350),
+                ProgressiveTaxBracket.Create(2, 15, 8351, 33950),
+                ProgressiveTaxBracket.Create(3, 25, 33951, 82250),
+                ProgressiveTaxBracket.Create(4, 28, 82251, 171550),
+                ProgressiveTaxBracket.Create(5, 33, 171551, 372950),
+                ProgressiveTaxBracket.Create(6, 35, 372951)
+            };
+            
+            [Test]
+        public async Task GivenAnnualIncomeFallsInFirstBracket_ShouldCalculateTax()
+        {
+            // Arrange
+            const decimal annualIncomeAmount = 7500M;
+            const decimal expectedTaxAmount = 750M;
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(annualIncomeAmount).Build();
+            var progressiveTaxTable = ProgressiveTaxTableTestBuilder.Create()
+                .WithTaxBrackets(_progressiveTaxBrackets)
+                .Build();
+            var progressiveTaxGateway = ProgressiveTaxGatewayTestBuilder.Create()
+                .WithProgressiveTaxTable(progressiveTaxTable)
+                .Build();
+
+            var sut = SutFixtureBuilder.Create().WithProgressiveTaxGateway(progressiveTaxGateway).Build();
+            // Act
+            var result = await sut.CalculateTax(annualIncome);
+            // Assert
+            result.TaxAmount.Should().Be(expectedTaxAmount);
+        }
+        
+        [Test]
+        public async Task GivenAnnualIncomeFallsInSecondBracket_ShouldCalculateTax()
+        {
+            // Arrange
+            const decimal annualIncomeAmount = 26000M;
+            const decimal expectedTaxAmount = 3482.50M;
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(annualIncomeAmount).Build();
+            var progressiveTaxTable = ProgressiveTaxTableTestBuilder.Create()
+                .WithTaxBrackets(_progressiveTaxBrackets)
+                .Build();
+            var progressiveTaxGateway = ProgressiveTaxGatewayTestBuilder.Create()
+                .WithProgressiveTaxTable(progressiveTaxTable)
+                .Build();
+
+            var sut = SutFixtureBuilder.Create().WithProgressiveTaxGateway(progressiveTaxGateway).Build();
+            // Act
+            var result = await sut.CalculateTax(annualIncome);
+            // Assert
+            result.TaxAmount.Should().Be(expectedTaxAmount);
+        }
+        
+        [Test]
+        public async Task GivenAnnualIncomeFallsInMiddleBracket_ShouldCalculateTax()
+        {
+            // Arrange
+            const decimal annualIncomeAmount = 126452M;
+            const decimal expectedTaxAmount = 29126.56M;
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(annualIncomeAmount).Build();
+            var progressiveTaxTable = ProgressiveTaxTableTestBuilder.Create()
+                .WithTaxBrackets(_progressiveTaxBrackets)
+                .Build();
+            var progressiveTaxGateway = ProgressiveTaxGatewayTestBuilder.Create()
+                .WithProgressiveTaxTable(progressiveTaxTable)
+                .Build();
+
+            var sut = SutFixtureBuilder.Create().WithProgressiveTaxGateway(progressiveTaxGateway).Build();
+            // Act
+            var result = await sut.CalculateTax(annualIncome);
+            // Assert
+            result.TaxAmount.Should().Be(expectedTaxAmount);
+        }
+        
+        [Test]
+        public async Task GivenAnnualIncomeFallsInLastBracket_ShouldCalculateTax()
+        {
+            // Arrange
+            const decimal annualIncomeAmount = 475000M;
+            const decimal expectedTaxAmount = 143933.50M;
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(annualIncomeAmount).Build();
+            var progressiveTaxTable = ProgressiveTaxTableTestBuilder.Create()
+                .WithTaxBrackets(_progressiveTaxBrackets)
+                .Build();
+            var progressiveTaxGateway = ProgressiveTaxGatewayTestBuilder.Create()
+                .WithProgressiveTaxTable(progressiveTaxTable)
+                .Build();
+
+            var sut = SutFixtureBuilder.Create().WithProgressiveTaxGateway(progressiveTaxGateway).Build();
+            // Act
+            var result = await sut.CalculateTax(annualIncome);
+            // Assert
+            result.TaxAmount.Should().Be(expectedTaxAmount);
+        }
+        }
     }
 
     private class SutFixtureBuilder

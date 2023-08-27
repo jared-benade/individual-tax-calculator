@@ -11,7 +11,8 @@ public class ProgressiveTaxBracket
     }
 
     // TODO: Validate that all fields are positive and that lower bound is less than upper bound
-    public static ProgressiveTaxBracket Create(int id, double taxPercentage, decimal lowerBound, decimal? upperBound)
+    public static ProgressiveTaxBracket Create(int id, double taxPercentage, decimal lowerBound,
+        decimal? upperBound = null)
     {
         return new ProgressiveTaxBracket(id, taxPercentage, lowerBound, upperBound);
     }
