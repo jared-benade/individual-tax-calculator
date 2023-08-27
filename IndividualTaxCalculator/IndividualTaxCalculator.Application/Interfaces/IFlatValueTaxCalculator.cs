@@ -1,8 +1,5 @@
-﻿using IndividualTaxCalculator.Domain.ValueObjects;
+﻿namespace IndividualTaxCalculator.Application.Interfaces;
 
-namespace IndividualTaxCalculator.Application.Interfaces;
-
-public interface IFlatValueTaxCalculator
+public interface IFlatValueTaxCalculator : ITaxCalculator
 {
-    Task<TaxCalculationResult> CalculateTax(TaxableAmount annualIncome);
 }
