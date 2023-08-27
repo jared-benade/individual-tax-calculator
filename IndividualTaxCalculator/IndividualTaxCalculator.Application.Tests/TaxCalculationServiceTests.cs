@@ -45,17 +45,49 @@ public class TaxCalculationServiceTests
             // Assert
             result.TaxAmount.Should().Be(returnedTaxCalculationResult.TaxAmount);
         }
+        
+        [Test]
+        public async Task GivenTaxTypeIsFlatValue_ShouldCalculateTax()
+        {
+            // Arrange
+            var request = TaxCalculationRequestDtoTestBuilder.CreateWithRandomProps().Build();
+            var postalCode = PostalCodeTestBuilder.Create().WithCode(request.PostalCode).Build();
+            var annualIncome = AnnualIncomeTestBuilder.Create().WithAmount(request.AnnualIncome).Build();
+
+            var taxCalculationTypesMapping = new Dictionary<PostalCode, TaxCalculationType>
+            {
+                { postalCode, TaxCalculationType.FlatValue }
+            };
+            var taxCalculationMappingGateway = TaxCalculationMappingGatewayTestBuilder.Create()
+                .WithMapping(taxCalculationTypesMapping)
+                .Build();
+            var returnedTaxCalculationResult = TaxCalculationResultTestBuilder.CreateWithRandomProps().Build();
+            var flatValueTaxCalculator = FlatValueTaxCalculatorTestBuilder.Create()
+                .WithCalculatedTax(annualIncome, returnedTaxCalculationResult)
+                .Build();
+
+            var sut = SutFixtureBuilder.Create()
+                .WithTaxCalculationMappingGateway(taxCalculationMappingGateway)
+                .WithFlatValueTaxCalculator(flatValueTaxCalculator)
+                .Build();
+            // Act
+            var result = await sut.CalculateTaxForIndividual(request);
+            // Assert
+            result.TaxAmount.Should().Be(returnedTaxCalculationResult.TaxAmount);
+        }
     }
 
     private class SutFixtureBuilder
     {
         private IFlatRateTaxCalculator _flatRateTaxCalculator;
         private ITaxCalculationMappingGateway _taxCalculationMappingGateway;
+        private IFlatValueTaxCalculator _flatValueTaxCalculator;
 
         private SutFixtureBuilder()
         {
             _taxCalculationMappingGateway = TaxCalculationMappingGatewayTestBuilder.Create().Build();
             _flatRateTaxCalculator = FlatRateTaxCalculatorTestBuilder.Create().Build();
+            _flatValueTaxCalculator = FlatValueTaxCalculatorTestBuilder.Create().Build();
         }
 
         public static SutFixtureBuilder Create()
@@ -65,7 +97,7 @@ public class TaxCalculationServiceTests
 
         public TaxCalculationService Build()
         {
-            return new TaxCalculationService(_taxCalculationMappingGateway, _flatRateTaxCalculator);
+            return new TaxCalculationService(_taxCalculationMappingGateway, _flatRateTaxCalculator, _flatValueTaxCalculator);
         }
 
         public SutFixtureBuilder WithTaxCalculationMappingGateway(
@@ -78,6 +110,12 @@ public class TaxCalculationServiceTests
         public SutFixtureBuilder WithFlatRateTaxCalculator(IFlatRateTaxCalculator flatRateTaxCalculator)
         {
             _flatRateTaxCalculator = flatRateTaxCalculator;
+            return this;
+        }
+        
+        public SutFixtureBuilder WithFlatValueTaxCalculator(IFlatValueTaxCalculator flatValueTaxCalculator)
+        {
+            _flatValueTaxCalculator = flatValueTaxCalculator;
             return this;
         }
     }

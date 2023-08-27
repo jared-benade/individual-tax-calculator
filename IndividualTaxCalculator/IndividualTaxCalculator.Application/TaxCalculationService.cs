@@ -9,15 +9,17 @@ namespace IndividualTaxCalculator.Application;
 public class TaxCalculationService : ITaxCalculationService
 {
     private readonly IFlatRateTaxCalculator _flatRateTaxCalculator;
+    private readonly IFlatValueTaxCalculator _flatValueTaxCalculator;
     private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
 
     public TaxCalculationService(ITaxCalculationMappingGateway taxCalculationMappingGateway,
-        IFlatRateTaxCalculator flatRateTaxCalculator)
+        IFlatRateTaxCalculator flatRateTaxCalculator, IFlatValueTaxCalculator flatValueTaxCalculator)
     {
         _taxCalculationMappingGateway = taxCalculationMappingGateway ??
                                         throw new ArgumentNullException(nameof(taxCalculationMappingGateway));
         _flatRateTaxCalculator =
             flatRateTaxCalculator ?? throw new ArgumentNullException(nameof(flatRateTaxCalculator));
+        _flatValueTaxCalculator = flatValueTaxCalculator ?? throw new ArgumentNullException(nameof(flatValueTaxCalculator));
     }
 
     public async Task<TaxCalculationResultDto> CalculateTaxForIndividual(TaxCalculationRequestDto request)
@@ -31,6 +33,12 @@ public class TaxCalculationService : ITaxCalculationService
         if (taxCalculationType == TaxCalculationType.FlatRate)
         {
             var taxCalculationResult = await _flatRateTaxCalculator.CalculateTax(annualIncome);
+            return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
+        } 
+        
+        if (taxCalculationType == TaxCalculationType.FlatValue)
+        {
+            var taxCalculationResult = await _flatValueTaxCalculator.CalculateTax(annualIncome);
             return new TaxCalculationResultDto(taxCalculationResult.TaxAmount);
         }
 
