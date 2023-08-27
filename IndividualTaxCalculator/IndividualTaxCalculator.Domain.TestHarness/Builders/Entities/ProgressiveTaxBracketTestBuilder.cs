@@ -4,14 +4,14 @@ namespace IndividualTaxCalculator.Domain.TestHarness.Builders.Entities;
 
 public class ProgressiveTaxBracketTestBuilder
 {
-    private Guid _id;
+    private int _id;
     private double _taxPercentage;
     private decimal _lowerBound;
     private decimal? _upperBound;
 
     private ProgressiveTaxBracketTestBuilder()
     {
-        _id = Guid.Empty;
+        _id = 0;
         _taxPercentage = 0;
         _lowerBound = 0;
     }

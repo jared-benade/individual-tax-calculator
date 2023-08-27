@@ -2,7 +2,7 @@
 
 public enum TaxCalculationType
 {
-    Progressive,
-    FlatValue,
-    FlatRate
+    Progressive = 1,
+    FlatValue = 2,
+    FlatRate = 3
 }

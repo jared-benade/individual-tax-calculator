@@ -6,12 +6,12 @@ public class FlatValueTaxConfigTestBuilder
 {
     private decimal _annualThresholdAmount;
     private decimal _flatValueAmount;
-    private readonly Guid _id;
+    private readonly int _id;
     private double _taxPercentage;
 
     private FlatValueTaxConfigTestBuilder()
     {
-        _id = Guid.Empty;
+        _id = 0;
         _flatValueAmount = 0;
         _annualThresholdAmount = 0;
         _taxPercentage = 0;
