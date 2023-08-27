@@ -8,8 +8,8 @@ namespace IndividualTaxCalculator.Application;
 
 public class TaxCalculationService : ITaxCalculationService
 {
-    private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
     private readonly IFlatRateTaxCalculator _flatRateTaxCalculator;
+    private readonly ITaxCalculationMappingGateway _taxCalculationMappingGateway;
 
     public TaxCalculationService(ITaxCalculationMappingGateway taxCalculationMappingGateway,
         IFlatRateTaxCalculator flatRateTaxCalculator)

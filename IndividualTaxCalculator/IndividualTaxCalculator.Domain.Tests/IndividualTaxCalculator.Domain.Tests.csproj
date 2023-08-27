@@ -20,7 +20,7 @@
 
 
     <ItemGroup>
-        <ProjectReference Include="..\IndividualTaxCalculator.CommonTestHarness\IndividualTaxCalculator.CommonTestHarness.csproj" />
+        <ProjectReference Include="..\IndividualTaxCalculator.CommonTestHarness\IndividualTaxCalculator.CommonTestHarness.csproj"/>
         <ProjectReference Include="..\IndividualTaxCalculator.Domain.TestHarness\IndividualTaxCalculator.Domain.TestHarness.csproj"/>
         <ProjectReference Include="..\IndividualTaxCalculator.Domain\IndividualTaxCalculator.Domain.csproj"/>
     </ItemGroup>

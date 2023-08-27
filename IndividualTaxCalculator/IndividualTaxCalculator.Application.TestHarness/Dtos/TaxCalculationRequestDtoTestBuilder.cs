@@ -5,8 +5,8 @@ namespace IndividualTaxCalculator.Application.TestHarness.Dtos;
 
 public class TaxCalculationRequestDtoTestBuilder
 {
-    private string _postalCode;
     private decimal _annualAmount;
+    private string _postalCode;
 
     private TaxCalculationRequestDtoTestBuilder()
     {

@@ -15,8 +15,8 @@ public class TaxCalculationResultTestBuilder
     private static TaxCalculationResultTestBuilder Create()
     {
         return new TaxCalculationResultTestBuilder();
-    } 
-    
+    }
+
     public static TaxCalculationResultTestBuilder CreateWithRandomProps()
     {
         return Create().WithRandomProps();

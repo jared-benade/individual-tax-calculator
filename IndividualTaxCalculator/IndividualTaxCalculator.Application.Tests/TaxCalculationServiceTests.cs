@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using IndividualTaxCalculator.Application.Interfaces;
-using IndividualTaxCalculator.Application.TestHarness;
 using IndividualTaxCalculator.Application.TestHarness.Dtos;
 using IndividualTaxCalculator.Application.TestHarness.TaxCalculators;
 using IndividualTaxCalculator.Domain.Enums;
@@ -50,8 +49,8 @@ public class TaxCalculationServiceTests
 
     private class SutFixtureBuilder
     {
-        private ITaxCalculationMappingGateway _taxCalculationMappingGateway;
         private IFlatRateTaxCalculator _flatRateTaxCalculator;
+        private ITaxCalculationMappingGateway _taxCalculationMappingGateway;
 
         private SutFixtureBuilder()
         {

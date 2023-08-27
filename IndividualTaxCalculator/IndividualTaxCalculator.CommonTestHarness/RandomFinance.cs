@@ -1,6 +1,4 @@
-﻿using Bogus;
-
-namespace IndividualTaxCalculator.CommonTestHarness;
+﻿namespace IndividualTaxCalculator.CommonTestHarness;
 
 public static class RandomFinance
 {
