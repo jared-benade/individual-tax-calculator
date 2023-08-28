@@ -12,10 +12,21 @@ The application is a self-contained MVC web application. You will need SQL local
 
 - DDD
 - Clean Architecture
-- Testing (NUnit, NSubstitute, Test harnessing)
+- Testing and Test harnessing
 - Builder pattern
 - Strategy pattern
 - SOLID principles
+
+## Technologies and packages
+
+- Dotnet 7
+- NUnit
+- FluentAssertions
+- NSubstitute
+- Bogus
+- Dapper
+- FluentMigrator
+- Bootstrap
 
 ## TODO
 
